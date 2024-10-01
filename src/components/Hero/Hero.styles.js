@@ -3,17 +3,20 @@ import styled from 'styled-components';
 export const HeroContainer = styled.section`
   position: relative;
   height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
-  padding: 0 5%;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/path-to-your-food-image.jpg') no-repeat center center;
+  padding: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../public/food.avif') no-repeat center center;
   background-size: cover;
   color: white;
+  margin-top: 0; 
 `;
 
 export const HeroContent = styled.div`
   max-width: 600px;
   z-index: 1;
+  padding: 0 5%; 
 `;
 
 export const HeroTitle = styled.h1`
