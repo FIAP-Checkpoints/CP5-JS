@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero/Hero";
-import Features from "./components/Features";
+import Benefits from "./components/Benefits/Benefits";
 import './styles/global.css'
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
         <Header />
         <Hero />
-        <Features />
+        <Benefits />
     </>
     );
 };

@@ -41,6 +41,7 @@ export const DownloadButton = styled.a`
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     background-color: #e6005c;

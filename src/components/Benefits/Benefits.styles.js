@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
-export const FeaturesContainer = styled.section`
+export const BenefitsContainer = styled.section`
   padding: 4rem 2rem;
   background-color: #f8f8f8;
 `;
 
-export const FeaturesTitle = styled.h2`
+export const BenefitsTitle = styled.h2`
   text-align: center;
   font-size: 3.5rem;
   color: #333;
   margin-bottom: 3rem;
 `;
 
-export const FeaturesGrid = styled.div`
+export const BenefitsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
@@ -20,7 +20,7 @@ export const FeaturesGrid = styled.div`
   margin: 0 auto;
 `;
 
-export const FeatureCard = styled.div`
+export const BenefitCard = styled.div`
   background-color: white;
   border-radius: 8px;
   padding: 2rem;
@@ -32,19 +32,19 @@ export const FeatureCard = styled.div`
   }
 `;
 
-export const FeatureIcon = styled.div`
+export const BenefitIcon = styled.div`
   font-size: 3rem;
   color: #ff4081;
   margin-bottom: 1rem;
 `;
 
-export const FeatureTitle = styled.h3`
+export const BenefitTitle = styled.h3`
   font-size: 1.5rem;
   color: #333;
   margin-bottom: 1rem;
 `;
 
-export const FeatureDescription = styled.p`
+export const BenefitDescription = styled.p`
   font-size: 1rem;
   color: #666;
   line-height: 1.6;

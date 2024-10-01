@@ -3,7 +3,7 @@ import { HeroContainer, HeroContent, HeroDescription, HeroTitle, DownloadButton 
 
 const Hero = () => {
     return(
-        <HeroContainer>
+        <HeroContainer id="home">
             <HeroContent>
                 <HeroTitle>Descubra Sabores Incríveis</HeroTitle>
                 <HeroDescription>

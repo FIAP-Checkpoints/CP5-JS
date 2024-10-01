@@ -40,8 +40,8 @@ const Header = () => {
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </HamburgerMenu>
             <Nav isOpen={isMenuOpen}>
-                <NavItem href="#inicio" onClick={closeMenu}>Início</NavItem>
-                <NavItem href="#cardapio" onClick={closeMenu}>Cardápio</NavItem>
+                <NavItem href="#home" onClick={closeMenu}>Início</NavItem>
+                <NavItem href="#benefits" onClick={closeMenu}>Benefícios</NavItem>
                 <NavItem href="#sobre" onClick={closeMenu}>Sobre</NavItem>
                 <NavItem href="#contato" onClick={closeMenu}>Contato</NavItem>
             </Nav>
