@@ -7,7 +7,7 @@ export const HeroContainer = styled.section`
   display: flex;
   align-items: center;
   padding: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../public/food.avif') no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../food.avif') no-repeat center center;
   background-size: cover;
   color: white;
   margin-top: 0; 
