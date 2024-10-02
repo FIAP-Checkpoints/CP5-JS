@@ -1,6 +1,15 @@
 import React from "react";
-import { BenefitsContainer, BenefitsTitle, BenefitsGrid, BenefitTitle, BenefitIcon, BenefitDescription, BenefitCard } from "./Benefits.styles";
 import { Truck, ChefHat, CreditCard } from "lucide-react";
+import { 
+    BenefitsContainer, 
+    BenefitsTitle, 
+    BenefitsGrid, 
+    BenefitTitle, 
+    BenefitIcon,
+    BenefitDescription,
+    BenefitCard 
+} from "./Benefits.styles";
+
 
 
 const Benefits = () => {

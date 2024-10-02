@@ -11,7 +11,7 @@ import {
     SocialIcons,
     IconWrapper,
     Copyright
-  } from './FooterStyles';
+  } from './Footer.styles';
 
 
 

@@ -1,5 +1,11 @@
 import React from "react";
-import { HeroContainer, HeroContent, HeroDescription, HeroTitle, DownloadButton } from "./Hero.styles";
+import { 
+    HeroContainer,
+    HeroContent, 
+    HeroDescription, 
+    HeroTitle, 
+    DownloadButton 
+} from "./Hero.styles";
 
 const Hero = () => {
     return(
