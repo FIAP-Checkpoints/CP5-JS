@@ -1,8 +1,9 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero/Hero";
-import Benefits from "./components/Benefits/Benefits";
+import Header from './components/Header/Header';
+import Hero from './components/Hero/Hero';
+import Benefits from './components/Benefits/Benefits';
+import FooterComponent from './components/Footer/Footer';
+import Features from './components/Features/Features';
 import './styles/global.css'
-import FooterComponent from "./components/Footer/Footer";
 
 function App() {
     return(
@@ -10,6 +11,7 @@ function App() {
         <Header />
         <Hero />
         <Benefits />
+        <Features />
         <FooterComponent/>
     </>
     );

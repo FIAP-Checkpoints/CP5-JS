@@ -15,7 +15,7 @@ export const FooterContainer = styled.footer`
   color: #333;
   padding: 2rem 1rem;
   font-family: Arial, sans-serif;
-  /* box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); 
 `;
 
 export const FooterContent = styled.div`
