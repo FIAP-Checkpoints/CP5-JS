@@ -67,7 +67,7 @@ const Features = () => {
     setLoading(true);
     try {
       const searchResponse = await fetch(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=18ed7a6005854383b44ff977374ee1a9&query=${searchTerm}&cuisine=${cuisine}&number=6`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=18ed7a6005854383b44ff977374ee1a9&query=${searchTerm}&cuisine=${cuisine}&number=8` // api (mostrar 8 receitas)
       );
       const searchData = await searchResponse.json();
       setRecipes(searchData.results);
