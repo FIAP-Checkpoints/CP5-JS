@@ -43,7 +43,7 @@ const Header = () => {
                 <NavItem href="#home" onClick={closeMenu}>Início</NavItem>
                 <NavItem href="#benefits" onClick={closeMenu}>Benefícios</NavItem>
                 <NavItem href="#features" onClick={closeMenu}>Receitas</NavItem>
-                <NavItem href="#contato" onClick={closeMenu}>Feedbacks</NavItem>
+                <NavItem href="#feedbacks" onClick={closeMenu}>Feedbacks</NavItem>
                 <NavItem href="#contato" onClick={closeMenu}>Contato</NavItem>
             </Nav>
         </HeaderContainer>

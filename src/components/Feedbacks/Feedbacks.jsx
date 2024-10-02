@@ -52,6 +52,11 @@ const StarRating = styled.div`
   margin-top: 10px;
 `;
 
+const DescriptionRates = styled.h3`
+    text-align: center;
+    color: #afafaf;
+`
+
 const SliderButton = styled.button`
   background: #f0f0f0;
   border: none;
@@ -82,7 +87,7 @@ const SliderButton = styled.button`
 
 `;
 
-
+DescriptionRates
 
 const feedbackData = [
   { id: 1, avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', description: "Great product! Highly recommended.", rating: 5, name: 'Raquel' },
@@ -106,7 +111,8 @@ const FeedbackSlider = () => {
   return (
     <BenefitsContainer>
     <BenefitsTitle>Feedbacks</BenefitsTitle>
-    <FeedbackContainer>
+    <DescriptionRates>Veja alguns de nossos Feedbacks dos nossos clientes.</DescriptionRates>
+    <FeedbackContainer id="feedbacks">
       <CardContainer translateX={-startIndex * 320}> 
         {feedbackData.map(feedback => (
           <Card key={feedback.id}>
