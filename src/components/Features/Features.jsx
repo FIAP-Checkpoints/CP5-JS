@@ -39,7 +39,7 @@ const Features = () => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Fecha o modal quando pressionar ESC
+  // fecha o modal quando pressionar ESC
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.keyCode === 27) setIsModalOpen(false);
@@ -50,7 +50,6 @@ const Features = () => {
     };
   }, []);
 
-  // Previne o scroll do body quando o modal está aberto
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = 'hidden';
