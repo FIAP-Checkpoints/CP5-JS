@@ -15,11 +15,14 @@ export const HeaderContainer = styled.header`
   z-index: 1000;    
 `;
 
-export const Logo = styled.h1`
+export const Logo = styled.a`
   font-size: 1.8rem;
   font-weight: bold;
   color: #ff4081;
+  text-decoration: none;
+  list-style: none;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  
 `;
 
 export const Nav = styled.nav`

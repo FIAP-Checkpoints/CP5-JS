@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { HamburgerMenu, HeaderContainer, Nav, NavItem, Logo } from "./Header.styles";
 import { Menu, X } from 'lucide-react'
 
@@ -35,7 +35,7 @@ const Header = () => {
 
     return (
         <HeaderContainer isScrolled={isScrolled}>
-            <Logo>GourmetOn</Logo>
+            <Logo href="#home">GourmetOn</Logo>
             <HamburgerMenu onClick={toggleMenu} aria-label="Toggle menu">
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </HamburgerMenu>
