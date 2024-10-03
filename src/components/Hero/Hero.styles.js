@@ -11,6 +11,10 @@ export const HeroContainer = styled.section`
   background-size: cover;
   color: white;
   margin-top: 0; 
+
+  @media (max-width: 768px) {
+    height: calc(100vh - 60px);
+  }
 `;
 
 export const HeroContent = styled.div`
@@ -24,12 +28,25 @@ export const HeroTitle = styled.h1`
   font-weight: bold;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
 `;
 
 export const HeroDescription = styled.p`
   font-size: 1.2rem;
   margin-bottom: 2rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const DownloadButton = styled.a`
@@ -45,5 +62,10 @@ export const DownloadButton = styled.a`
 
   &:hover {
     background-color: #e6005c;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
   }
 `;

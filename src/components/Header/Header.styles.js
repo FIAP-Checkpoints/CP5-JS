@@ -9,10 +9,15 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #ffffff; 
+  background-color: #ffffff;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
-  z-index: 1000;    
+  z-index: 1000;
+
+  @media (max-width: 768px) {
+    background-color: ${props => props.isScrolled ? '#ffffff' : 'transparent'};
+    box-shadow: ${props => props.isScrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none'};
+  }
 `;
 
 export const Logo = styled.a`
@@ -23,6 +28,9 @@ export const Logo = styled.a`
   list-style: none;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
   
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const Nav = styled.nav`
@@ -30,20 +38,18 @@ export const Nav = styled.nav`
   gap: 1.5rem;
   
   @media (max-width: 768px) {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    position: fixed;
+    top: 0;
+    right: ${props => props.isOpen ? '0' : '-100%'};
+    height: 100vh;
+    width: 250px;
     background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    padding: 5rem 2rem 2rem;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
     flex-direction: column;
-    align-items: center;
-    transform: ${props => props.isOpen ? 'translateY(0)' : 'translateY(-100%)'};
-    opacity: ${props => props.isOpen ? 1 : 0};
-    visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
-    transition: all 0.3s ease-in-out;
+    align-items: flex-start;
+    transition: right 0.3s ease-in-out;
   }
 `;
 
@@ -54,23 +60,35 @@ export const NavItem = styled.a`
   position: relative;
   transition: color 0.2s ease;
   
-  &:hover {
-    color: #ff4081;
+  @media (min-width: 769px) {
+    &:hover {
+      color: #ff4081;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #ff4081;
+      transition: width 0.3s ease;
+    }
+    
+    &:hover::after {
+      width: 100%;
+    }
   }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: #ff4081;
-    transition: width 0.3s ease;
-  }
-  
-  &:hover::after {
-    width: 100%;
+
+  @media (max-width: 768px) {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+
+    &:hover, &:focus {
+      color: #333;
+    }
   }
 `;
 
@@ -89,5 +107,6 @@ export const HamburgerMenu = styled.button`
   
   @media (max-width: 768px) {
     display: block;
+    color: ${props => props.isScrolled ? '#333' : '#333'};
   }
 `;
