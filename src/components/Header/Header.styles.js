@@ -97,16 +97,15 @@ export const HamburgerMenu = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  color: #333;
   transition: color 0.2s ease;
   z-index: 1001;
   
-  &:hover {
-    color: #ff4081;
-  }
-  
   @media (max-width: 768px) {
     display: block;
-    color: ${props => props.isScrolled ? '#333' : '#333'};
+    color: ${props => {
+      if (props.isOpen) return '#333';
+      if (props.isScrolled) return '#333';
+      return '#ffffff';
+    }};
   }
 `;
