@@ -50,15 +50,38 @@ export const SearchInput = styled.input`
 `;
 
 export const FilterSelect = styled.select`
-  padding: 0.8rem 1rem;
-  border: 2px solid #ddd;
+  appearance: none;
+  padding: 0.8rem 2.5rem 0.8rem 1rem;
+  border: 1px solid #e2e8f0;
   border-radius: 8px;
   font-size: 1rem;
+  color: #2d3748;
+  background-color: white;
   cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 200px;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1.5em;
+
+  &:hover {
+    border-color: #cbd5e0;
+    background-color: #f8fafc;
+  }
 
   &:focus {
     border-color: #ff4081;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 64, 129, 0.1);
+  }
+
+  & option {
+    color: #2d3748;
+    padding: 8px;
   }
 `;
 
