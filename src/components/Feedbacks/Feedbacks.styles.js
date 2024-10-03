@@ -17,10 +17,10 @@ export const FeedbackContainer = styled.div`
 
 export const CardContainer = styled.div`
   display: flex;
-  transition: transform 0.5s ease;
-  transform: translateX(${props => props.translateX}px);
   gap: 20px;
   padding: 20px;
+  will-change: transform;
+  touch-action: pan-y pinch-zoom;
 `;
 
 export const Card = styled.div`
@@ -28,12 +28,13 @@ export const Card = styled.div`
   border-radius: 16px;
   padding: 32px;
   margin: 0;
+  min-width: 320px;
   width: 320px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   flex-shrink: 0;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+  transition: transform 0.2s ease;
+  
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
@@ -159,4 +160,33 @@ export const VerifiedBadge = styled.span`
   justify-content: center;
   font-size: 12px;
   margin-left: 4px;
+`;
+
+export const PaginationDots = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+`;
+
+export const DotButton = styled.button`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: ${props => props.isActive ? '#FF4081' : '#E0E0E0'};
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.2);
+    background-color: ${props => props.isActive ? '#FF4081' : '#BDBDBD'};
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 64, 129, 0.3);
+  }
 `;

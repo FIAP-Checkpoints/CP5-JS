@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { BenefitsContainer, BenefitsTitle } from '../Benefits/Benefits.styles';
 import { 
@@ -10,14 +10,15 @@ import {
   Card, 
   Avatar, 
   StarRating,
-  SliderButton,
   UserInfo,
   UserName,
   UserRole,
   QuoteIcon,
   RatingInfo,
   RatingCount,
-  VerifiedBadge
+  VerifiedBadge,
+  PaginationDots,
+  DotButton
 } from './Feedbacks.styles';
 
 const feedbackData = [
@@ -74,18 +75,115 @@ const feedbackData = [
 ];
 
 const FeedbackSlider = () => {
-  const [startIndex, setStartIndex] = useState(0);
-  const cardsToShow = window.innerWidth >= 1200 ? 3 : window.innerWidth >= 768 ? 2 : 1;
-
-  const handlePrev = () => {
-    setStartIndex(prev => Math.max(0, prev - 1));
-  };
-
-  const handleNext = () => {
-    setStartIndex(prev => Math.min(feedbackData.length - cardsToShow, prev + 1));
-  };
+  const [cardsToShow, setCardsToShow] = useState(3);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [currentTranslate, setCurrentTranslate] = useState(0);
+  const [prevTranslate, setPrevTranslate] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const dragStartX = useRef(0);
+  const animationRef = useRef(null);
+  const containerRef = useRef(null);
+  
+  const cardWidth = 340; 
+  const maxTranslate = -(feedbackData.length - cardsToShow) * cardWidth;
+  const totalPages = Math.max(feedbackData.length - (cardsToShow - 1), 1);
 
   const averageRating = (feedbackData.reduce((acc, curr) => acc + curr.rating, 0) / feedbackData.length).toFixed(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1200) setCardsToShow(3);
+      else if (window.innerWidth >= 768) setCardsToShow(2);
+      else setCardsToShow(1);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const animation = () => {
+    if (isDragging) {
+      setContainerPosition();
+      animationRef.current = requestAnimationFrame(animation);
+    }
+  };
+
+  const setContainerPosition = () => {
+    containerRef.current.style.transform = `translateX(${currentTranslate}px)`;
+  };
+
+  const handleDragStart = (e) => {
+    dragStartX.current = e.clientX;
+    setStartX(e.clientX);
+    setIsDragging(true);
+    animationRef.current = requestAnimationFrame(animation);
+  };
+
+  const handleDragMove = (e) => {
+    if (!isDragging) return;
+
+    const currentPosition = e.clientX;
+    const diff = currentPosition - startX;
+    const newTranslate = prevTranslate + diff;
+
+    if (newTranslate > 0) {
+      setCurrentTranslate(newTranslate * 0.3);
+    } else if (newTranslate < maxTranslate) {
+      const overflowTranslate = maxTranslate + (newTranslate - maxTranslate) * 0.3;
+      setCurrentTranslate(overflowTranslate);
+    } else {
+      setCurrentTranslate(newTranslate);
+    }
+
+    const newIndex = Math.abs(Math.round(newTranslate / cardWidth));
+    if (newIndex !== currentIndex) {
+      setCurrentIndex(newIndex);
+    }
+  };
+
+  const handleDragEnd = () => {
+    cancelAnimationFrame(animationRef.current);
+    setIsDragging(false);
+
+    const movedBy = currentTranslate - prevTranslate;
+
+    if (Math.abs(movedBy) > cardWidth / 4) {
+      const snapTo = movedBy > 0
+        ? Math.ceil(currentTranslate / cardWidth) * cardWidth
+        : Math.floor(currentTranslate / cardWidth) * cardWidth;
+
+      const boundedTranslate = Math.min(0, Math.max(snapTo, maxTranslate));
+      
+      containerRef.current.style.transition = 'transform 0.3s ease-out';
+      setCurrentTranslate(boundedTranslate);
+      setPrevTranslate(boundedTranslate);
+      setCurrentIndex(Math.abs(Math.round(boundedTranslate / cardWidth)));
+    } else {
+      containerRef.current.style.transition = 'transform 0.3s ease-out';
+      setCurrentTranslate(prevTranslate);
+    }
+
+    setTimeout(() => {
+      containerRef.current.style.transition = 'none';
+    }, 300);
+  };
+
+  const handleDotClick = (index) => {
+    const newTranslate = -index * cardWidth;
+    const boundedTranslate = Math.min(0, Math.max(newTranslate, maxTranslate));
+
+    containerRef.current.style.transition = 'transform 0.3s ease-out';
+    setCurrentTranslate(boundedTranslate);
+    setPrevTranslate(boundedTranslate);
+    setCurrentIndex(index);
+
+    setTimeout(() => {
+      containerRef.current.style.transition = 'none';
+    }, 300);
+  };
+
 
   return (
     <BenefitsContainer id='feedbacks'>
@@ -108,9 +206,25 @@ const FeedbackSlider = () => {
       </SubTitle>
 
       <FeedbackContainer>
-        <CardContainer translateX={-startIndex * (320 + 20)}> 
+        <CardContainer
+          ref={containerRef}
+          onMouseDown={handleDragStart}
+          onMouseMove={handleDragMove}
+          onMouseUp={handleDragEnd}
+          onMouseLeave={handleDragEnd}
+          style={{
+            cursor: isDragging ? 'grabbing' : 'grab',
+            transform: `translateX(${currentTranslate}px)`,
+            userSelect: 'none'
+          }}
+        >
           {feedbackData.map(feedback => (
-            <Card key={feedback.id}>
+            <Card 
+              key={feedback.id}
+              style={{
+                transform: isDragging ? 'scale(0.98)' : 'scale(1)'
+              }}
+            >
               <QuoteIcon>
                 <Quote size={24} />
               </QuoteIcon>
@@ -142,14 +256,16 @@ const FeedbackSlider = () => {
           ))}
         </CardContainer>
 
-        <SliderButton direction="left" onClick={handlePrev} disabled={startIndex === 0}>
-          <ChevronLeft size={24} />
-        </SliderButton>
-        
-        <SliderButton direction="right" onClick={handleNext} disabled={startIndex >= feedbackData.length - cardsToShow}>
-          <ChevronRight size={24} />
-        </SliderButton>
-
+        <PaginationDots>
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <DotButton
+              key={index}
+              isActive={currentIndex === index}
+              onClick={() => handleDotClick(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </PaginationDots>
       </FeedbackContainer>
     </BenefitsContainer>
   );
