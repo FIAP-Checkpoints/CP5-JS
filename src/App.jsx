@@ -4,6 +4,7 @@ import Benefits from './components/Benefits/Benefits';
 import FooterComponent from './components/Footer/Footer';
 import Features from './components/Features/Features';
 import FeedbackSlider from './components/Feedbacks/Feedbacks';
+import ContactForm from './components/Contact/Contact';
 import './styles/global.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
             <Benefits />
             <Features />
             <FeedbackSlider />
+            <ContactForm />
         <FooterComponent/>
     </>
     );
