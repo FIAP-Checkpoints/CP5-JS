@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 import { HamburgerMenu, HeaderContainer, Nav, NavItem, Logo } from "./Header.styles";
 import { Menu, X } from 'lucide-react'
 
@@ -33,13 +33,10 @@ const Header = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, [isMenuOpen]);
 
-    const scrollToTop = () => {
-        scroll.scrollToTop();
-    };
 
     return (
         <HeaderContainer isScrolled={isScrolled}>
-            <Logo onClick={scrollToTop} isScrolled={isScrolled}>GourmetOn</Logo>
+            <Logo><ScrollLink to="home" smooth={true} duration={0} onClick={closeMenu}>GourmetOn</ScrollLink></Logo>
             <HamburgerMenu 
                 onClick={toggleMenu} 
                 aria-label="Toggle menu" 
