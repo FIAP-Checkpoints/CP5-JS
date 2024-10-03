@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
 export const FeaturesContainer = styled.section`
-  padding: 4rem 2rem;
+  padding: 4rem 1rem;
   background-color: white;
+
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 export const FeaturesTitle = styled.h2`
@@ -10,6 +14,10 @@ export const FeaturesTitle = styled.h2`
   font-size: 2.5rem;
   color: #333;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 export const FeaturesSubtitle = styled.p`
@@ -20,6 +28,11 @@ export const FeaturesSubtitle = styled.p`
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const SearchContainer = styled.div`
@@ -33,6 +46,11 @@ export const SearchForm = styled.form`
   margin-bottom: 2rem;
   flex-wrap: wrap;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -46,6 +64,10 @@ export const SearchInput = styled.input`
   &:focus {
     border-color: #ff4081;
     outline: none;
+  }
+
+  @media (max-width: 768px) {
+    min-width: unset;
   }
 `;
 
@@ -83,6 +105,10 @@ export const FilterSelect = styled.select`
     color: #2d3748;
     padding: 8px;
   }
+
+  @media (max-width: 768px) {
+    max-width: unset;
+  }
 `;
 
 export const SearchButton = styled.button`
@@ -98,6 +124,10 @@ export const SearchButton = styled.button`
   &:hover {
     background-color: #e6005c;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const ResultsGrid = styled.div`
@@ -105,6 +135,11 @@ export const ResultsGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `;
 
 export const RecipeCard = styled.div`
@@ -135,11 +170,6 @@ export const RecipeTitle = styled.h3`
   margin-bottom: 0.5rem;
 `;
 
-export const RecipeMeta = styled.p`
-  font-size: 0.9rem;
-  color: #666;
-`;
-
 export const DetailButton = styled.button`
   background-color: #ff4081;
   color: white;
@@ -155,7 +185,6 @@ export const DetailButton = styled.button`
   }
 `;
 
-// Modal Styles
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -167,6 +196,7 @@ export const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 1rem;
 `;
 
 export const ModalContainer = styled.div`
@@ -190,6 +220,12 @@ export const ModalContainer = styled.div`
       opacity: 1;
     }
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
 `;
 
 export const ModalHeader = styled.div`
@@ -198,12 +234,20 @@ export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const ModalTitle = styled.h2`
   margin: 0;
   font-size: 1.5rem;
   color: #333;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -226,18 +270,31 @@ export const CloseButton = styled.button`
 export const ModalContent = styled.div`
   padding: 1.5rem;
   overflow-y: auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const RecipeDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
 `;
 
 export const RecipeMetrics = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
 `;
 
 export const MetricItem = styled.div`
@@ -257,6 +314,18 @@ export const MetricItem = styled.div`
     font-size: 1.125rem;
     font-weight: 600;
     color: #333;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+
+    span:first-child {
+      font-size: 0.8rem;
+    }
+
+    span:last-child {
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -278,6 +347,24 @@ export const RecipeIngredients = styled.div`
       color: #666;
     }
   }
+
+  @media (max-width: 768px) {
+    margin-top: 1.5rem;
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+
+      li {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+      }
+    }
+  }
 `;
 
 export const RecipeInstructions = styled.div`
@@ -293,6 +380,20 @@ export const RecipeInstructions = styled.div`
     color: #666;
     line-height: 1.6;
   }
+
+  @media (max-width: 768px) {
+    margin-top: 1.5rem;
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    div {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  }
 `;
 
 export const DietTagsContainer = styled.div`
@@ -300,6 +401,11 @@ export const DietTagsContainer = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
 `;
 
 export const DietTag = styled.span`
@@ -309,4 +415,9 @@ export const DietTag = styled.span`
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
 `;

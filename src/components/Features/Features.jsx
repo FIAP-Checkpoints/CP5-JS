@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Search } from "lucide-react";
 import {
   FeaturesContainer,
   FeaturesTitle,
@@ -28,12 +28,12 @@ import {
   RecipeInstructions,
   DetailButton,
   DietTag,
-  DietTagsContainer
-} from './Features.styles';
+  DietTagsContainer,
+} from "./Features.styles";
 
 const Features = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [cuisine, setCuisine] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [cuisine, setCuisine] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -44,20 +44,20 @@ const Features = () => {
     const handleEsc = (event) => {
       if (event.keyCode === 27) setIsModalOpen(false);
     };
-    window.addEventListener('keydown', handleEsc);
+    window.addEventListener("keydown", handleEsc);
     return () => {
-      window.removeEventListener('keydown', handleEsc);
+      window.removeEventListener("keydown", handleEsc);
     };
   }, []);
 
   useEffect(() => {
     if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isModalOpen]);
 
@@ -71,7 +71,7 @@ const Features = () => {
       const searchData = await searchResponse.json();
       setRecipes(searchData.results);
     } catch (error) {
-      console.error('Erro ao buscar receitas:', error);
+      console.error("Erro ao buscar receitas:", error);
     } finally {
       setLoading(false);
     }
@@ -86,17 +86,18 @@ const Features = () => {
       setSelectedRecipe(data);
       setIsModalOpen(true);
     } catch (error) {
-      console.error('Erro ao buscar detalhes da receita:', error);
+      console.error("Erro ao buscar detalhes da receita:", error);
     }
   };
 
   return (
-    <FeaturesContainer id='features'>
+    <FeaturesContainer id="features">
       <FeaturesTitle>Discover New Recipes</FeaturesTitle>
       <FeaturesSubtitle>
-        Explore our vast collection of recipes with advanced filters to find exactly what you're looking for
+        Explore our vast collection of recipes with advanced filters to find
+        exactly what you're looking for
       </FeaturesSubtitle>
-      
+
       <SearchContainer>
         <SearchForm onSubmit={searchRecipes}>
           <SearchInput
@@ -105,7 +106,7 @@ const Features = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          
+
           <FilterSelect
             value={cuisine}
             onChange={(e) => setCuisine(e.target.value)}
@@ -116,9 +117,9 @@ const Features = () => {
             <option value="japanese">Japanese</option>
             <option value="indian">Indian</option>
           </FilterSelect>
-          
+
           <SearchButton type="submit">
-            {loading ? 'Searching...' : <Search />}
+            {loading ? "Searching..." : <Search />}
           </SearchButton>
         </SearchForm>
         <ResultsGrid>
@@ -138,19 +139,19 @@ const Features = () => {
 
       {isModalOpen && selectedRecipe && (
         <ModalOverlay onClick={() => setIsModalOpen(false)}>
-          <ModalContainer onClick={e => e.stopPropagation()}>
+          <ModalContainer onClick={(e) => e.stopPropagation()}>
             <ModalHeader>
               <ModalTitle>{selectedRecipe.title}</ModalTitle>
               <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
             </ModalHeader>
-            
+
             <ModalContent>
               <RecipeDetails>
-                <RecipeImage 
-                  src={selectedRecipe.image} 
-                  alt={selectedRecipe.title} 
+                <RecipeImage
+                  src={selectedRecipe.image}
+                  alt={selectedRecipe.title}
                 />
-                
+
                 <RecipeMetrics>
                   <MetricItem>
                     <span>Preparation Time</span>
@@ -166,36 +167,38 @@ const Features = () => {
                   </MetricItem>
                   <MetricItem>
                     <span>Price per Serving</span>
-                    <span>${(selectedRecipe.pricePerServing / 100).toFixed(2)}</span>
+                    <span>
+                      ${(selectedRecipe.pricePerServing / 100).toFixed(2)}
+                    </span>
                   </MetricItem>
                 </RecipeMetrics>
 
-                <div>
-                  <RecipeIngredients>
-                    <h3>Ingredients</h3>
-                    <ul>
-                      {selectedRecipe.extendedIngredients.map((ingredient) => (
-                        <li key={ingredient.id}>
-                          {ingredient.amount} {ingredient.unit} {ingredient.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </RecipeIngredients>
+                <RecipeIngredients>
+                  <h3>Ingredients</h3>
+                  <ul>
+                    {selectedRecipe.extendedIngredients.map((ingredient) => (
+                      <li key={ingredient.id}>
+                        {ingredient.amount} {ingredient.unit} {ingredient.name}
+                      </li>
+                    ))}
+                  </ul>
+                </RecipeIngredients>
 
-                  <RecipeInstructions>
-                    <h3>Instructions</h3>
-                    <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
-                  </RecipeInstructions>
-                </div>
+                <RecipeInstructions>
+                  <h3>Instructions</h3>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: selectedRecipe.instructions,
+                    }}
+                  />
+                </RecipeInstructions>
 
                 {selectedRecipe.diets?.length > 0 && (
                   <div>
                     <h3>Diets</h3>
                     <DietTagsContainer>
                       {selectedRecipe.diets.map((diet) => (
-                        <DietTag key={diet}>
-                          {diet}
-                        </DietTag>
+                        <DietTag key={diet}>{diet}</DietTag>
                       ))}
                     </DietTagsContainer>
                   </div>
@@ -206,7 +209,7 @@ const Features = () => {
         </ModalOverlay>
       )}
     </FeaturesContainer>
- );
+  );
 };
 
 export default Features;
