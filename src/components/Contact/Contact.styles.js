@@ -12,14 +12,23 @@ const float = keyframes`
 `;
 
 export const Container = styled.div`
-  max-width: 800px;
+  max-width: 100%;
   margin: 2rem auto;
-  padding: 2rem;
+  padding: 1rem;
   animation: ${fadeIn} 0.6s ease-out;
+
+  @media (min-width: 768px) {
+    max-width: 90%;
+    padding: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 800px;
+  }
 `;
 
 export const FormTitle = styled.h2`
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #333;
   text-align: center;
   margin-bottom: 1rem;
@@ -29,20 +38,29 @@ export const FormTitle = styled.h2`
     display: inline-block;
     margin: 0 0.5rem;
   }
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const FormSubtitle = styled.p`
   text-align: center;
   color: #666;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const FormCard = styled.div`
   background: white;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  padding: 1.5rem;
   position: relative;
   overflow: hidden;
   
@@ -55,20 +73,27 @@ export const FormCard = styled.div`
     height: 5px;
     background: linear-gradient(90deg, #FF4D8D, #FF8FB1);
   }
+
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 export const Form = styled.form`
   display: grid;
-  gap: 1.5rem;
+  gap: 1.25rem;
+
+  @media (min-width: 768px) {
+    gap: 1.5rem;
+  }
 `;
 
 export const InputGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 1rem;
   
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
@@ -109,7 +134,7 @@ export const Input = styled.input`
 
 export const Textarea = styled.textarea`
   width: 100%;
-  padding: 1rem 1rem 1rem;
+  padding: 1rem 1rem 1rem 3rem;
   border: 2px solid transparent;
   border-radius: 12px;
   background: #f8f9fa;
@@ -145,8 +170,8 @@ export const SubmitButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  width: fit-content;
-  margin-left: auto;
+  width: 100%;
+  margin-top: 1rem;
   
   &:hover {
     background: #ff3377;
@@ -159,6 +184,11 @@ export const SubmitButton = styled.button`
   
   &:hover svg {
     transform: translateX(5px);
+  }
+
+  @media (min-width: 768px) {
+    width: auto;
+    margin-left: auto;
   }
 `;
 
