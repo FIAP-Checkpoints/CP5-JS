@@ -193,12 +193,18 @@ export const VerifiedBadge = styled.span`
   margin-left: 4px;
 `;
 
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+`;
+
 export const PaginationDots = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 24px;
 `;
 
 export const DotButton = styled.button`
@@ -224,5 +230,28 @@ export const DotButton = styled.button`
   @media (min-width: 768px) {
     width: 10px;
     height: 10px;
+  }
+`;
+
+export const MobileNavButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: #4a5568;
+  transition: color 0.3s ease;
+
+  &:hover:not(:disabled) {
+    color: #2d3748;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 767px) {
+    display: block;
   }
 `;

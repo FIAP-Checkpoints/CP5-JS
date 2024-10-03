@@ -17,8 +17,10 @@ import {
   RatingInfo,
   RatingCount,
   VerifiedBadge,
+  PaginationContainer,
   PaginationDots,
   DotButton,
+  MobileNavButton,
 } from "./Feedbacks.styles";
 
 const feedbackData = [
@@ -96,7 +98,7 @@ const FeedbackSlider = () => {
   const containerRef = useRef(null);
 
   const cardWidth = 320;
-  const cardGap = 20; 
+  const cardGap = 20;
   const containerWidth = cardsToShow * cardWidth + (cardsToShow - 1) * cardGap;
   const maxTranslate = -(
     feedbackData.length * (cardWidth + cardGap) -
@@ -205,6 +207,16 @@ const FeedbackSlider = () => {
     }, 300);
   };
 
+  const handlePrevClick = () => {
+    const newIndex = Math.max(0, currentIndex - 1);
+    handleDotClick(newIndex);
+  };
+
+  const handleNextClick = () => {
+    const newIndex = Math.min(totalPages - 1, currentIndex + 1);
+    handleDotClick(newIndex);
+  };
+
   return (
     <BenefitsContainer id="feedbacks">
       <BenefitsTitle>Customer Feedbacks</BenefitsTitle>
@@ -279,16 +291,34 @@ const FeedbackSlider = () => {
           ))}
         </CardContainer>
 
-        <PaginationDots>
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <DotButton
-              key={index}
-              isActive={currentIndex === index}
-              onClick={() => handleDotClick(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </PaginationDots>
+        <PaginationContainer>
+          <MobileNavButton
+            onClick={handlePrevClick}
+            disabled={currentIndex === 0}
+            aria-label="Previous feedback"
+          >
+            <ChevronLeft size={24} />
+          </MobileNavButton>
+
+          <PaginationDots>
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <DotButton
+                key={index}
+                isActive={currentIndex === index}
+                onClick={() => handleDotClick(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </PaginationDots>
+
+          <MobileNavButton
+            onClick={handleNextClick}
+            disabled={currentIndex === totalPages - 1}
+            aria-label="Next feedback"
+          >
+            <ChevronRight size={24} />
+          </MobileNavButton>
+        </PaginationContainer>
       </FeedbackContainer>
     </BenefitsContainer>
   );
