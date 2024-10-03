@@ -8,17 +8,26 @@ export const FlexDiv = styled.div`
 `;
 
 export const FeedbackContainer = styled.div`
-  max-width: 1350px;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
-  padding: 40px 0;
+  padding: 40px 20px;
   overflow: hidden;
+
+  @media (min-width: 768px) {
+    max-width: 90%;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1350px;
+    padding: 40px 0;
+  }
 `;
 
 export const CardContainer = styled.div`
   display: flex;
   gap: 20px;
-  padding: 20px;
+  padding: 20px 0;
   will-change: transform;
   touch-action: pan-y pinch-zoom;
 `;
@@ -26,10 +35,10 @@ export const CardContainer = styled.div`
 export const Card = styled.div`
   background-color: #ffffff;
   border-radius: 16px;
-  padding: 32px;
+  padding: 24px;
   margin: 0;
-  min-width: 320px;
-  width: 320px;
+  min-width: 280px;
+  width: 280px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   flex-shrink: 0;
   position: relative;
@@ -39,23 +48,39 @@ export const Card = styled.div`
     transform: translateY(-5px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
   }
+
+  @media (min-width: 480px) {
+    min-width: 320px;
+    width: 320px;
+    padding: 32px;
+  }
 `;
 
 export const Avatar = styled.img`
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 480px) {
+    width: 56px;
+    height: 56px;
+  }
 `;
 
 export const Description = styled.p`
-  font-size: 15px;
+  font-size: 14px;
   color: #4a5568;
   line-height: 1.6;
-  margin: 20px 0;
+  margin: 16px 0;
   font-style: italic;
+
+  @media (min-width: 480px) {
+    font-size: 15px;
+    margin: 20px 0;
+  }
 `;
 
 export const StarRating = styled.div`
@@ -67,12 +92,18 @@ export const StarRating = styled.div`
 export const SubTitle = styled.div`
   text-align: center;
   color: #4a5568;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
 `;
 
 export const SliderButton = styled.button`
@@ -171,8 +202,8 @@ export const PaginationDots = styled.div`
 `;
 
 export const DotButton = styled.button`
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   border: none;
   background-color: ${props => props.isActive ? '#FF4081' : '#E0E0E0'};
@@ -188,5 +219,10 @@ export const DotButton = styled.button`
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(255, 64, 129, 0.3);
+  }
+
+  @media (min-width: 768px) {
+    width: 10px;
+    height: 10px;
   }
 `;

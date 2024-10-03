@@ -1,14 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { BenefitsContainer, BenefitsTitle } from '../Benefits/Benefits.styles';
-import { 
+import { useState, useEffect, useRef } from "react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { BenefitsContainer, BenefitsTitle } from "../Benefits/Benefits.styles";
+import {
   Description,
-  SubTitle, 
-  FlexDiv, 
-  FeedbackContainer, 
-  CardContainer, 
-  Card, 
-  Avatar, 
+  SubTitle,
+  FlexDiv,
+  FeedbackContainer,
+  CardContainer,
+  Card,
+  Avatar,
   StarRating,
   UserInfo,
   UserName,
@@ -18,64 +18,74 @@ import {
   RatingCount,
   VerifiedBadge,
   PaginationDots,
-  DotButton
-} from './Feedbacks.styles';
+  DotButton,
+} from "./Feedbacks.styles";
 
 const feedbackData = [
-  { 
-    id: 1, 
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3', 
-    description: "The recipe recommendations are spot on! I've discovered so many new dishes that have become family favorites. The meal planning feature has made my weekly cooking so much easier.", 
-    rating: 5, 
-    name: 'Rachel Thompson',
-    role: 'Food Enthusiast',
+  {
+    id: 1,
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+    description:
+      "The recipe recommendations are spot on! I've discovered so many new dishes that have become family favorites. The meal planning feature has made my weekly cooking so much easier.",
+    rating: 5,
+    name: "Rachel Thompson",
+    role: "Food Enthusiast",
     verified: true,
-    date: '2024-01-15'
+    date: "2024-01-15",
   },
-  { 
-    id: 2, 
-    avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3', 
-    description: "As a busy professional, this app has transformed how I approach cooking. The ingredient substitution suggestions are particularly helpful when I'm missing something.", 
-    rating: 4, 
-    name: 'Matthew Chen',
-    role: 'Software Developer',
+  {
+    id: 2,
+    avatar:
+      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3",
+    description:
+      "As a busy professional, this app has transformed how I approach cooking. The ingredient substitution suggestions are particularly helpful when I'm missing something.",
+    rating: 4,
+    name: "Matthew Chen",
+    role: "Software Developer",
     verified: true,
-    date: '2024-02-01'
+    date: "2024-02-01",
   },
-  { 
-    id: 3, 
-    avatar: 'https://images.unsplash.com/photo-1640951613773-54706e06851d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3', 
-    description: "The international cuisine section opened up a whole new world of cooking for me. However, some recipes could use more detailed instructions for beginners.", 
-    rating: 4, 
-    name: 'James Wilson',
-    role: 'Home Chef',
+  {
+    id: 3,
+    avatar:
+      "https://images.unsplash.com/photo-1640951613773-54706e06851d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3",
+    description:
+      "The international cuisine section opened up a whole new world of cooking for me. However, some recipes could use more detailed instructions for beginners.",
+    rating: 4,
+    name: "James Wilson",
+    role: "Home Chef",
     verified: true,
-    date: '2024-02-15'
+    date: "2024-02-15",
   },
-  { 
-    id: 4, 
-    avatar: 'https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?q=80&w=1966&auto=format&fit=crop&ixlib=rb-4.0.3', 
-    description: "Outstanding customer support! They helped me customize meal plans for my dietary restrictions. The recipe scaling feature is a game-changer for hosting dinner parties.", 
-    rating: 5, 
-    name: 'Ryan Connor',
-    role: 'Restaurant Owner',
+  {
+    id: 4,
+    avatar:
+      "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?q=80&w=1966&auto=format&fit=crop&ixlib=rb-4.0.3",
+    description:
+      "Outstanding customer support! They helped me customize meal plans for my dietary restrictions. The recipe scaling feature is a game-changer for hosting dinner parties.",
+    rating: 5,
+    name: "Ryan Connor",
+    role: "Restaurant Owner",
     verified: true,
-    date: '2024-02-28'
+    date: "2024-02-28",
   },
-  { 
-    id: 5, 
-    avatar: 'https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3', 
-    description: "The seasonal recipe collections are fantastic, and I love how the app suggests recipes based on ingredients I already have. The cooking timer integration is very useful.", 
-    rating: 5, 
-    name: 'Isabella Martinez',
-    role: 'Culinary Student',
+  {
+    id: 5,
+    avatar:
+      "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3",
+    description:
+      "The seasonal recipe collections are fantastic, and I love how the app suggests recipes based on ingredients I already have. The cooking timer integration is very useful.",
+    rating: 5,
+    name: "Isabella Martinez",
+    role: "Culinary Student",
     verified: true,
-    date: '2024-03-10'
+    date: "2024-03-10",
   },
 ];
 
 const FeedbackSlider = () => {
-  const [cardsToShow, setCardsToShow] = useState(3);
+  const [cardsToShow, setCardsToShow] = useState(1);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [currentTranslate, setCurrentTranslate] = useState(0);
@@ -84,12 +94,20 @@ const FeedbackSlider = () => {
   const dragStartX = useRef(0);
   const animationRef = useRef(null);
   const containerRef = useRef(null);
-  
-  const cardWidth = 340; 
-  const maxTranslate = -(feedbackData.length - cardsToShow) * cardWidth;
+
+  const cardWidth = 320;
+  const cardGap = 20; 
+  const containerWidth = cardsToShow * cardWidth + (cardsToShow - 1) * cardGap;
+  const maxTranslate = -(
+    feedbackData.length * (cardWidth + cardGap) -
+    containerWidth
+  );
   const totalPages = Math.max(feedbackData.length - (cardsToShow - 1), 1);
 
-  const averageRating = (feedbackData.reduce((acc, curr) => acc + curr.rating, 0) / feedbackData.length).toFixed(1);
+  const averageRating = (
+    feedbackData.reduce((acc, curr) => acc + curr.rating, 0) /
+    feedbackData.length
+  ).toFixed(1);
 
   useEffect(() => {
     const handleResize = () => {
@@ -99,8 +117,8 @@ const FeedbackSlider = () => {
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const animation = () => {
@@ -115,29 +133,31 @@ const FeedbackSlider = () => {
   };
 
   const handleDragStart = (e) => {
-    dragStartX.current = e.clientX;
-    setStartX(e.clientX);
+    const clientX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
+    dragStartX.current = clientX;
+    setStartX(clientX);
     setIsDragging(true);
     animationRef.current = requestAnimationFrame(animation);
   };
 
   const handleDragMove = (e) => {
     if (!isDragging) return;
-
-    const currentPosition = e.clientX;
+    const clientX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
+    const currentPosition = clientX;
     const diff = currentPosition - startX;
     const newTranslate = prevTranslate + diff;
 
     if (newTranslate > 0) {
       setCurrentTranslate(newTranslate * 0.3);
     } else if (newTranslate < maxTranslate) {
-      const overflowTranslate = maxTranslate + (newTranslate - maxTranslate) * 0.3;
+      const overflowTranslate =
+        maxTranslate + (newTranslate - maxTranslate) * 0.3;
       setCurrentTranslate(overflowTranslate);
     } else {
       setCurrentTranslate(newTranslate);
     }
 
-    const newIndex = Math.abs(Math.round(newTranslate / cardWidth));
+    const newIndex = Math.round(Math.abs(newTranslate) / (cardWidth + cardGap));
     if (newIndex !== currentIndex) {
       setCurrentIndex(newIndex);
     }
@@ -149,44 +169,44 @@ const FeedbackSlider = () => {
 
     const movedBy = currentTranslate - prevTranslate;
 
-    if (Math.abs(movedBy) > cardWidth / 4) {
-      const snapTo = movedBy > 0
-        ? Math.ceil(currentTranslate / cardWidth) * cardWidth
-        : Math.floor(currentTranslate / cardWidth) * cardWidth;
+    if (Math.abs(movedBy) > (cardWidth + cardGap) / 4) {
+      const direction = movedBy > 0 ? 1 : -1;
+      const newIndex = Math.max(
+        0,
+        Math.min(currentIndex - direction, totalPages - 1)
+      );
+      const newTranslate = -newIndex * (cardWidth + cardGap);
 
-      const boundedTranslate = Math.min(0, Math.max(snapTo, maxTranslate));
-      
-      containerRef.current.style.transition = 'transform 0.3s ease-out';
-      setCurrentTranslate(boundedTranslate);
-      setPrevTranslate(boundedTranslate);
-      setCurrentIndex(Math.abs(Math.round(boundedTranslate / cardWidth)));
+      containerRef.current.style.transition = "transform 0.3s ease-out";
+      setCurrentTranslate(newTranslate);
+      setPrevTranslate(newTranslate);
+      setCurrentIndex(newIndex);
     } else {
-      containerRef.current.style.transition = 'transform 0.3s ease-out';
+      containerRef.current.style.transition = "transform 0.3s ease-out";
       setCurrentTranslate(prevTranslate);
     }
 
     setTimeout(() => {
-      containerRef.current.style.transition = 'none';
+      containerRef.current.style.transition = "none";
     }, 300);
   };
 
   const handleDotClick = (index) => {
-    const newTranslate = -index * cardWidth;
-    const boundedTranslate = Math.min(0, Math.max(newTranslate, maxTranslate));
+    const newTranslate = -index * (cardWidth + cardGap);
+    const boundedTranslate = Math.max(maxTranslate, Math.min(0, newTranslate));
 
-    containerRef.current.style.transition = 'transform 0.3s ease-out';
+    containerRef.current.style.transition = "transform 0.3s ease-out";
     setCurrentTranslate(boundedTranslate);
     setPrevTranslate(boundedTranslate);
     setCurrentIndex(index);
 
     setTimeout(() => {
-      containerRef.current.style.transition = 'none';
+      containerRef.current.style.transition = "none";
     }, 300);
   };
 
-
   return (
-    <BenefitsContainer id='feedbacks'>
+    <BenefitsContainer id="feedbacks">
       <BenefitsTitle>Customer Feedbacks</BenefitsTitle>
       <SubTitle>
         Trusted by thousands of home chefs worldwide
@@ -195,9 +215,11 @@ const FeedbackSlider = () => {
             {[...Array(5)].map((_, index) => (
               <Star
                 key={index}
-                size={20}
+                size={16}
                 fill={index < Math.floor(averageRating) ? "#FFD700" : "none"}
-                stroke={index < Math.floor(averageRating) ? "#FFD700" : "#D3D3D3"}
+                stroke={
+                  index < Math.floor(averageRating) ? "#FFD700" : "#D3D3D3"
+                }
               />
             ))}
           </StarRating>
@@ -212,27 +234,28 @@ const FeedbackSlider = () => {
           onMouseMove={handleDragMove}
           onMouseUp={handleDragEnd}
           onMouseLeave={handleDragEnd}
+          onTouchStart={handleDragStart}
+          onTouchMove={handleDragMove}
+          onTouchEnd={handleDragEnd}
           style={{
-            cursor: isDragging ? 'grabbing' : 'grab',
+            cursor: isDragging ? "grabbing" : "grab",
             transform: `translateX(${currentTranslate}px)`,
-            userSelect: 'none'
+            userSelect: "none",
           }}
         >
-          {feedbackData.map(feedback => (
-            <Card 
-              key={feedback.id}
-              style={{
-                transform: isDragging ? 'scale(0.98)' : 'scale(1)'
-              }}
-            >
+          {feedbackData.map((feedback) => (
+            <Card key={feedback.id}>
               <QuoteIcon>
                 <Quote size={24} />
               </QuoteIcon>
-              
+
               <Description>{feedback.description}</Description>
-              
+
               <FlexDiv>
-                <Avatar src={feedback.avatar} alt={`${feedback.name}'s avatar`} />
+                <Avatar
+                  src={feedback.avatar}
+                  alt={`${feedback.name}'s avatar`}
+                />
                 <UserInfo>
                   <UserName>
                     {feedback.name}
