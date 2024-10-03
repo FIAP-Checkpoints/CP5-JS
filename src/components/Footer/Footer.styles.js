@@ -15,7 +15,7 @@ export const FooterContainer = styled.footer`
   color: #333;
   padding: 2rem 1rem;
   font-family: Arial, sans-serif;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const FooterContent = styled.div`
@@ -24,6 +24,7 @@ export const FooterContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 2rem;
 `;
 
 export const FooterSection = styled.div`
@@ -31,6 +32,10 @@ export const FooterSection = styled.div`
   min-width: 200px;
   margin-bottom: 1rem;
   animation: ${fadeIn} 0.5s ease-out;
+
+  @media (max-width: 768px) {
+    flex-basis: 100%;
+  }
 `;
 
 export const FooterTitle = styled.h3`
@@ -49,7 +54,7 @@ export const FooterTitle = styled.h3`
     background-color: #ff4081;
     transition: width 0.3s ease;
   }
-
+  
   &:hover::after {
     width: 70%;
   }
@@ -65,7 +70,7 @@ export const FooterListItem = styled.li`
   display: flex;
   align-items: center;
   transition: transform 0.3s ease;
-
+  
   &:hover {
     transform: translateX(5px);
   }
@@ -75,7 +80,7 @@ export const FooterLink = styled.a`
   color: #333;
   text-decoration: none;
   transition: color 0.3s;
-
+  
   &:hover {
     color: #ff4081;
   }
@@ -94,7 +99,7 @@ export const IconWrapper = styled.span`
 export const SocialLink = styled(FooterLink)`
   display: inline-block;
   transition: transform 0.3s ease, color 0.3s;
-
+  
   &:hover {
     transform: scale(1.2);
     color: #ff4081;
