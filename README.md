@@ -7,7 +7,6 @@ GourmetOn é uma landing page desenvolvida para um aplicativo de delivery de com
 ### 🎯 Objetivos
 
 - Desenvolver uma Landing Page para o app de delivery GourmetOn
-- Trabalhar com JSON para gerenciamento de dados
 - Implementar requisições assíncronas utilizando Fetch API
 - Criar uma interface responsiva e atraente usando React e Styled Components
 
@@ -67,7 +66,3 @@ Certifique-se de ter todas as dependências instaladas antes de executar o proje
 ## 📬 Contato
 
 Para mais informações sobre o projeto, entre em contato com qualquer membro da equipe.
-
----
-
-Desenvolvido com ❤️ pela equipe GourmetOn
