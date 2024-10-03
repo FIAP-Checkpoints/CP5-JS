@@ -1,33 +1,35 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Utensils, Send, ChefHat, Mail, Book } from "lucide-react";
 import {
   Container,
-  Form,
   FormTitle,
-  FormCard,
   FormSubtitle,
-  Input,
+  FormCard,
+  Form,
   InputGrid,
   InputGroup,
+  Input,
   Textarea,
   SubmitButton,
-  SuccessMessage,
+  SuccessMessage
 } from "./Contact.styles";
 
-
 const ContactForm = () => {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+    const initialFormState = {
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      };
+    
+      const [formState, setFormState] = useState(initialFormState);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setFormState(initialFormState)
+    setTimeout(() => setSubmitted(false), 4000);
   };
 
   const handleChange = (e) => {
@@ -38,7 +40,7 @@ const ContactForm = () => {
   };
 
   return (
-    <Container>
+    <Container id="contact">
       <FormTitle>
         Let's Cook Up a Conversation <span>🍳</span>
       </FormTitle>
@@ -82,13 +84,15 @@ const ContactForm = () => {
               required
             />
           </InputGroup>
-          <Textarea
-            name="message"
-            placeholder="Tell us what's cooking in your mind... 🥘"
-            value={formState.message}
-            onChange={handleChange}
-            required
-          />
+          <InputGroup>
+            <Textarea
+              name="message"
+              placeholder="Tell us what's cooking in your mind... 🥘"
+              value={formState.message}
+              onChange={handleChange}
+              required
+            />
+          </InputGroup>
           <SubmitButton type="submit">
             Send Message <Send size={20} />
           </SubmitButton>

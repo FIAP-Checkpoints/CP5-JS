@@ -1,4 +1,4 @@
-import { styled, keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
@@ -93,6 +93,7 @@ export const Input = styled.input`
   background: #f8f9fa;
   font-size: 1rem;
   transition: all 0.3s ease;
+  box-sizing: border-box;
   
   &:focus {
     outline: none;
@@ -108,7 +109,7 @@ export const Input = styled.input`
 
 export const Textarea = styled.textarea`
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem;
   border: 2px solid transparent;
   border-radius: 12px;
   background: #f8f9fa;
@@ -116,6 +117,7 @@ export const Textarea = styled.textarea`
   min-height: 120px;
   transition: all 0.3s ease;
   resize: vertical;
+  box-sizing: border-box;
   
   &:focus {
     outline: none;
