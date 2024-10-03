@@ -92,16 +92,16 @@ const Features = () => {
 
   return (
     <FeaturesContainer id='features'>
-      <FeaturesTitle>Descubra Novas Receitas</FeaturesTitle>
+      <FeaturesTitle>Discover New Recipes</FeaturesTitle>
       <FeaturesSubtitle>
-        Explore nossa vasta coleção de receitas com filtros avançados para encontrar exatamente o que você procura
+        Explore our vast collection of recipes with advanced filters to find exactly what you're looking for
       </FeaturesSubtitle>
       
       <SearchContainer>
         <SearchForm onSubmit={searchRecipes}>
           <SearchInput
             type="text"
-            placeholder="Busque por receitas..."
+            placeholder="Search for recipes..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -110,15 +110,15 @@ const Features = () => {
             value={cuisine}
             onChange={(e) => setCuisine(e.target.value)}
           >
-            <option value="">Todas as Cozinhas</option>
-            <option value="italian">Italiana</option>
-            <option value="mexican">Mexicana</option>
-            <option value="japanese">Japonesa</option>
-            <option value="indian">Indiana</option>
+            <option value="">All Cuisines</option>
+            <option value="italian">Italian</option>
+            <option value="mexican">Mexican</option>
+            <option value="japanese">Japanese</option>
+            <option value="indian">Indian</option>
           </FilterSelect>
           
           <SearchButton type="submit">
-            {loading ? 'Buscando...' : <Search />}
+            {loading ? 'Searching...' : <Search />}
           </SearchButton>
         </SearchForm>
         <ResultsGrid>
@@ -128,7 +128,7 @@ const Features = () => {
               <RecipeInfo>
                 <RecipeTitle>{recipe.title}</RecipeTitle>
                 <DetailButton onClick={() => fetchRecipeDetails(recipe.id)}>
-                  Ver Detalhes
+                  View Details
                 </DetailButton>
               </RecipeInfo>
             </RecipeCard>
@@ -153,26 +153,26 @@ const Features = () => {
                 
                 <RecipeMetrics>
                   <MetricItem>
-                    <span>Tempo de Preparo</span>
-                    <span>{selectedRecipe.readyInMinutes} minutos</span>
+                    <span>Preparation Time</span>
+                    <span>{selectedRecipe.readyInMinutes} minutes</span>
                   </MetricItem>
                   <MetricItem>
-                    <span>Porções</span>
+                    <span>Servings</span>
                     <span>{selectedRecipe.servings}</span>
                   </MetricItem>
                   <MetricItem>
-                    <span>Pontuação de Saúde</span>
+                    <span>Health Score</span>
                     <span>{selectedRecipe.healthScore}/100</span>
                   </MetricItem>
                   <MetricItem>
-                    <span>Preço por Porção</span>
+                    <span>Price per Serving</span>
                     <span>${(selectedRecipe.pricePerServing / 100).toFixed(2)}</span>
                   </MetricItem>
                 </RecipeMetrics>
 
                 <div>
                   <RecipeIngredients>
-                    <h3>Ingredientes</h3>
+                    <h3>Ingredients</h3>
                     <ul>
                       {selectedRecipe.extendedIngredients.map((ingredient) => (
                         <li key={ingredient.id}>
@@ -183,14 +183,14 @@ const Features = () => {
                   </RecipeIngredients>
 
                   <RecipeInstructions>
-                    <h3>Modo de Preparo</h3>
+                    <h3>Instructions</h3>
                     <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
                   </RecipeInstructions>
                 </div>
 
                 {selectedRecipe.diets?.length > 0 && (
                   <div>
-                    <h3>Dietas</h3>
+                    <h3>Diets</h3>
                     <DietTagsContainer>
                       {selectedRecipe.diets.map((diet) => (
                         <DietTag key={diet}>
@@ -206,7 +206,7 @@ const Features = () => {
         </ModalOverlay>
       )}
     </FeaturesContainer>
-  );
+ );
 };
 
 export default Features;

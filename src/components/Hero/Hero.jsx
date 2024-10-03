@@ -7,15 +7,16 @@ import {
     DownloadButton 
 } from "./Hero.styles";
 
+
 const Hero = () => {
     return(
         <HeroContainer id="home">
             <HeroContent>
-                <HeroTitle>Descubra Sabores Incríveis</HeroTitle>
+                <HeroTitle>Discover Amazing Flavors</HeroTitle>
                 <HeroDescription>
-                Explore uma variedade de pratos deliciosos e encontre os melhores restaurantes da sua região com o GourmetOn.
+                    Explore a variety of delicious dishes and find the best restaurants in your area with GourmetOn.
                 </HeroDescription>
-                <DownloadButton>Baixe Agora</DownloadButton>
+                <DownloadButton>Download Now</DownloadButton>
             </HeroContent>
         </HeroContainer>
     );

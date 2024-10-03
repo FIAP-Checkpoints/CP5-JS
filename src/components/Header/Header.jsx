@@ -40,11 +40,11 @@ const Header = () => {
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </HamburgerMenu>
             <Nav isOpen={isMenuOpen}>
-                <NavItem href="#home" onClick={closeMenu}>Início</NavItem>
-                <NavItem href="#benefits" onClick={closeMenu}>Benefícios</NavItem>
-                <NavItem href="#features" onClick={closeMenu}>Receitas</NavItem>
+                <NavItem href="#home" onClick={closeMenu}>Home</NavItem>
+                <NavItem href="#benefits" onClick={closeMenu}>Benefits</NavItem>
+                <NavItem href="#features" onClick={closeMenu}>Recipes</NavItem>
                 <NavItem href="#feedbacks" onClick={closeMenu}>Feedbacks</NavItem>
-                <NavItem href="#contato" onClick={closeMenu}>Contato</NavItem>
+                <NavItem href="#contato" onClick={closeMenu}>Contact</NavItem>
             </Nav>
         </HeaderContainer>
     );

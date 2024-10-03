@@ -11,29 +11,28 @@ import {
 } from "./Benefits.styles";
 
 
-
 const Benefits = () => {
     const benefits = [
         {
-            icon : <Truck />,
-            title : 'Entrega Rápida',
-            description : 'Receba sua comida em tempo recorde com nossa rede de entregadores eficientes.'
-        },
-        { 
-            icon : <ChefHat />,
-            title: 'Variedade de Restaurantes',
-            description: 'Escolha entre uma ampla seleção de restaurantes locais e cozinhas internacionais.'
+            icon: <Truck />,
+            title: 'Fast Delivery',
+            description: 'Get your food in record time with our efficient delivery network.'
         },
         {
-            icon : <CreditCard />,
-            title : 'Pagamento Fácil',
-            description : 'Diversas opções de pagamento seguras e convenientes para sua comodidade.'
+            icon: <ChefHat />,
+            title: 'Restaurant Variety',
+            description: 'Choose from a wide selection of local restaurants and international cuisines.'
+        },
+        {
+            icon: <CreditCard />,
+            title: 'Easy Payment',
+            description: 'Multiple secure and convenient payment options for your comfort.'
         }
     ];
 
     return (
         <BenefitsContainer id="benefits">
-            <BenefitsTitle>Por que escolher o GourmetOn?</BenefitsTitle>
+            <BenefitsTitle>Why choose GourmetOn?</BenefitsTitle>
             <BenefitsGrid>
                 {benefits.map((benefit, index) => (
                     <BenefitCard key={index}>
