@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import { HamburgerMenu, HeaderContainer, Nav, NavItem, Logo } from "./Header.styles";
 import { Menu, X } from 'lucide-react'
 
@@ -32,9 +33,13 @@ const Header = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, [isMenuOpen]);
 
+    const scrollToTop = () => {
+        scroll.scrollToTop();
+    };
+
     return (
         <HeaderContainer isScrolled={isScrolled}>
-            <Logo href="#home" isScrolled={isScrolled}>GourmetOn</Logo>
+            <Logo onClick={scrollToTop} isScrolled={isScrolled}>GourmetOn</Logo>
             <HamburgerMenu 
                 onClick={toggleMenu} 
                 aria-label="Toggle menu" 
@@ -45,11 +50,21 @@ const Header = () => {
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </HamburgerMenu>
             <Nav isOpen={isMenuOpen}>
-                <NavItem href="#home" onClick={closeMenu}>Home</NavItem>
-                <NavItem href="#benefits" onClick={closeMenu}>Benefits</NavItem>
-                <NavItem href="#features" onClick={closeMenu}>Recipes</NavItem>
-                <NavItem href="#feedbacks" onClick={closeMenu}>Feedbacks</NavItem>
-                <NavItem href="#contact" onClick={closeMenu}>Contact</NavItem>
+                <NavItem>
+                    <ScrollLink to="home" smooth={true} duration={0} onClick={closeMenu}>Home</ScrollLink>
+                </NavItem>
+                <NavItem>
+                    <ScrollLink to="benefits" smooth={true} duration={0} onClick={closeMenu}>Benefits</ScrollLink>
+                </NavItem>
+                <NavItem>
+                    <ScrollLink to="features" smooth={true} duration={0} onClick={closeMenu}>Recipes</ScrollLink>
+                </NavItem>
+                <NavItem>
+                    <ScrollLink to="feedbacks" smooth={true} duration={0} onClick={closeMenu}>Feedbacks</ScrollLink>
+                </NavItem>
+                <NavItem>
+                    <ScrollLink to="contact" smooth={true} duration={0} onClick={closeMenu}>Contact</ScrollLink>
+                </NavItem>
             </Nav>
         </HeaderContainer>
     );

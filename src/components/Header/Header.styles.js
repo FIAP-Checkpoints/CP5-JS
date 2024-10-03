@@ -8,25 +8,25 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1.3rem 2rem;
   background-color: #ffffff;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
   z-index: 1000;
-
   @media (max-width: 768px) {
     background-color: ${props => props.isScrolled ? '#ffffff' : 'transparent'};
     box-shadow: ${props => props.isScrolled ? '0 2px 10px rgba(0,0,0,0.1)' : 'none'};
   }
 `;
 
-export const Logo = styled.a`
+export const Logo = styled.div`
   font-size: 1.8rem;
   font-weight: bold;
   color: #ff4081;
   text-decoration: none;
   list-style: none;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  cursor: pointer;
   
   @media (max-width: 768px) {
     font-size: 1.5rem;
@@ -53,41 +53,42 @@ export const Nav = styled.nav`
   }
 `;
 
-export const NavItem = styled.a`
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  transition: color 0.2s ease;
-  
-  @media (min-width: 769px) {
-    &:hover {
-      color: #ff4081;
-    }
-    
-    &::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background-color: #ff4081;
-      transition: width 0.3s ease;
-    }
-    
-    &:hover::after {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 768px) {
+export const NavItem = styled.div`
+  a {
     color: #333;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-
-    &:hover, &:focus {
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.2s ease;
+    cursor: pointer;
+    
+    @media (min-width: 769px) {
+      &:hover {
+        color: #ff4081;
+      }
+      
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: #ff4081;
+        transition: width 0.3s ease;
+      }
+      
+      &:hover::after {
+        width: 100%;
+      }
+    }
+    @media (max-width: 768px) {
       color: #333;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      &:hover, &:focus {
+        color: #333;
+      }
     }
   }
 `;
